@@ -1,12 +1,14 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import Footer from "./Component/Container/Footer";
-import TotalProductsFetch from "./Component/Container/TotalProductsFetch";
+import Footer from "./Component/Container/Footer/Footer";
+import TotalProductsFetch from "./Component/Container/Product/TotalProductsFetch";
+import Navbar from "./Component/Container/Nav_Content/Navbar";
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/" element={<TotalProductsFetch />} />
         </Routes>
