@@ -19,6 +19,7 @@ import { CircularProgress } from "@mui/material";
 
 export default function TotalProductsFetch() {
   const search = useSelector((state) => state.search.search);
+
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -60,6 +61,8 @@ export default function TotalProductsFetch() {
       dispatch(fetchSearchFailure(err.message));
     }
   };
+
+  // const user = data.results.find((result) => result.name === username);
 
   useEffect(() => {
     fetchData();

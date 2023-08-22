@@ -11,7 +11,7 @@ import {
 export default function Navbar() {
   const [searchInput, setSearchInput] = useState("");
   const dispatch = useDispatch();
-  const [showDropdown, setShowDropdown] = useState(false);
+  // const [showDropdown, setShowDropdown] = useState(false);
 
   const fetchSearch = async () => {
     dispatch(SearchRequest());
@@ -28,9 +28,9 @@ export default function Navbar() {
     }
   }, [searchInput]);
 
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
+  // const toggleDropdown = () => {
+  //   setShowDropdown(!showDropdown);
+  // };
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
@@ -64,34 +64,32 @@ export default function Navbar() {
           </div>
         </div>
         <nav className="navbar navbar-expand-md navbar-light bg-light">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            onMouseEnter={toggleDropdown}
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div
-            className={`collapse navbar-collapse ${showDropdown ? "show" : ""}`}
-            id="navbarNav"
-          >
+          <div className="navbar">
+            <button>
+              <div className="navbar-click"></div>
+            </button>
             <ul className="navbar-nav">
-              <li className="nav-item">Store</li>
-              <li className="nav-item">Account</li>
-              <li className="nav-item">Wish List</li>
               <li className="nav-item">
-                Basket <ShoppingBasketIcon />
+                <a className="" href="">
+                  Store
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="">Account</a>
+              </li>
+              <li className="nav-item">
+                <a href="">Wish List</a>
+              </li>
+              <li className="nav-item">
+                <a href="">
+                  Basket <ShoppingBasketIcon />
+                </a>
               </li>
             </ul>
           </div>
         </nav>
       </nav>
-      {showDropdown && (
+      {/* {showDropdown && (
         <div className="dropdown_content" onMouseLeave={toggleDropdown}>
           <ul className="nav_list">
             <li>Store</li>
@@ -102,7 +100,7 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

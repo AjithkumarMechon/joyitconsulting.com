@@ -1,7 +1,6 @@
 nav {
   position: fixed;
 }
-
 .lorem-content {
   background-image: -webkit-linear-gradient(left, #1d1c1c, #f38787);
   color: white;
@@ -10,6 +9,7 @@ nav {
   position: relative;
   top: 1em;
 }
+
 .lorem-content h3 {
   display: flex;
   justify-content: flex-start;
@@ -43,10 +43,6 @@ nav {
   height: auto;
 }
 
-.navbar_item ul li {
-  list-style: none;
-}
-
 .Logo,
 .Logo:hover {
   color: rgb(236, 35, 112);
@@ -60,8 +56,32 @@ nav {
   display: flex;
   gap: 20px;
 }
-.nav_list {
-  display: none;
+
+#navbarNav ul {
+  float: right;
+  margin-right: 20px;
+}
+
+#navbarNav ul li {
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
+}
+
+#navbarNav ul li a {
+  color: black;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+
+a.active,
+a:hover {
+  background: #cef1ea;
+  transition: 0.5s;
+}
+
+a {
+  text-decoration: none;
 }
 
 .form-inline {
@@ -72,29 +92,6 @@ nav {
 
 .button_changer {
   font-size: 1.2rem;
-}
-
-.nav_list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  right: 20%;
-}
-.navbar-toggler {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: transform 0.2s ease;
-}
-
-.navbar-toggler:hover {
-  transform: scale(1.2);
-}
-
-.navbar-toggler:hover ~ .dropdown_content,
-.dropdown_content:hover {
-  display: block;
 }
 
 .category_filters {
@@ -169,14 +166,6 @@ nav {
 
 .subscribe {
   margin-top: 8rem;
-}
-
-.navbar {
-  position: relative;
-}
-
-.navbar_item {
-  cursor: pointer;
 }
 
 .dropdown_icon {
@@ -331,3 +320,40 @@ nav {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+/* .navbar {
+  display: none;
+} */
+/* .navbar:hover {
+  display: flex;
+  top: 2.5rem;
+}
+.navbar-nav {
+  display: inline;
+}
+.navbar-click:hover {
+  display: inline-block;
+} */
+/* .navbar {
+  position: relative;
+}
+
+.navbar-click {
+  display: none;
+  position: absolute;
+  background-color: black; 
+}
+
+.navbar-nav:hover,
+.navbar-click {
+  display: block;
+}
+
+/* Other styles for buttons, links, etc. */
+/* .navbar-nav {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 10px 0;
+} */

@@ -13,7 +13,7 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <div>Something went wrong.</div>; // You can customize the error message
+      return <div>Error Occur</div>; // You can customize the error message
     }
 
     return this.props.children;

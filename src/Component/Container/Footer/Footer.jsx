@@ -4,6 +4,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import AndroidIcon from "@mui/icons-material/Android";
 import AppleIcon from "@mui/icons-material/Apple";
+
 const Footer = () => {
   return (
     <footer className="footer">

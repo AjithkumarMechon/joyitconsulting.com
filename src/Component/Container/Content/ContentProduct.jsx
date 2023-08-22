@@ -3,25 +3,40 @@ import { useSelector } from "react-redux";
 import { CircularProgress } from "@mui/material";
 import ".././product.css";
 
+import SearchOffTwoToneIcon from "@mui/icons-material/SearchOffTwoTone";
 export default function ContentProduct() {
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const productsInitial = useSelector((state) => state.data.products.products);
+  const loading = useSelector((state) => state.searchdata.loading);
+  const categories = useSelector((state) => state.data.categories);
+  const searchTerm = useSelector((state) => state.search.search);
   const productsFromSearch = useSelector(
     (state) => state.searchdata?.search?.products || []
   );
-  const loading = useSelector((state) => state.searchdata.loading);
-  const categories = useSelector((state) => state.data.categories);
 
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
   const productsPerPage = 8;
 
   const productsToShow =
     productsFromSearch.length === 0 ? productsInitial : productsFromSearch;
 
-  const filteredProducts = selectedCategory
-    ? productsToShow.filter((product) => product.category === selectedCategory)
+  const filteredProductsBySearch = searchTerm
+    ? productsToShow.filter(
+        (product) =>
+          product.description
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          product.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
     : productsToShow;
+
+  const filteredProducts = selectedCategory
+    ? filteredProductsBySearch.filter(
+        (product) => product.category === selectedCategory
+      )
+    : filteredProductsBySearch;
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -29,7 +44,6 @@ export default function ContentProduct() {
     indexOfFirstProduct,
     indexOfLastProduct
   );
-
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   const pagesToShow = [];
@@ -44,10 +58,6 @@ export default function ContentProduct() {
   if (loading) {
     return <CircularProgress />;
   }
-
-  const handleThumbnailClick = (index) => {
-    setSelectedImageIndex(index);
-  };
 
   return (
     <>
@@ -71,32 +81,44 @@ export default function ContentProduct() {
         </div>
       </div>
       <div className="grid_data">
-        {currentProducts.map((product) => {
-          const { id, title, description, price, images } = product;
-          return (
-            <div key={id} className="content-all">
-              <img
-                src={images[selectedImageIndex]}
-                alt="Image loading.."
-                width={"200rem"}
-                height={"200rem"}
-              />
-
-              <h2>
-                <b>{title}</b>
-              </h2>
-              <p>{description}</p>
-              <h2>$ {price}</h2>
-            </div>
-          );
-        })}
+        {currentProducts.length !== 0 ? (
+          currentProducts.map((product) => {
+            const { id, title, description, price, images } = product;
+            return (
+              <div key={id} className="content-all">
+                <img
+                  src={images[selectedImageIndex]}
+                  alt="Image loading.."
+                  width={"200rem"}
+                  height={"200rem"}
+                />
+                <h2>
+                  <b>{title}</b>
+                </h2>
+                <p>{description}</p>
+                <h2>$ {price}</h2>
+              </div>
+            );
+          })
+        ) : (
+          <div>
+            <h1
+              style={{
+                color: "red",
+                fontSize: "3rem",
+              }}
+            >
+              Data not found
+            </h1>
+          </div>
+        )}
       </div>
       <div className="pagination">
         <button
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage === 1}
         >
-          Previous
+          Prev
         </button>
         {pagesToShow.map((pageNumber) => (
           <button
