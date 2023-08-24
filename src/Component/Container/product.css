@@ -52,37 +52,6 @@ nav {
 .inner_logo {
   color: black;
 }
-.navbar-nav {
-  display: flex;
-  gap: 20px;
-}
-
-#navbarNav ul {
-  float: right;
-  margin-right: 20px;
-}
-
-#navbarNav ul li {
-  display: inline-block;
-  line-height: 80px;
-  margin: 0 5px;
-}
-
-#navbarNav ul li a {
-  color: black;
-  font-size: 17px;
-  text-transform: uppercase;
-}
-
-a.active,
-a:hover {
-  background: #cef1ea;
-  transition: 0.5s;
-}
-
-a {
-  text-decoration: none;
-}
 
 .form-inline {
   display: flex;
@@ -194,24 +163,6 @@ a {
   right: 0%;
 }
 
-.nav_list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.nav_list li {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.nav_list li:last-child {
-  border-bottom: none;
-}
-
-.nav_list li:hover {
-  background-color: #f5f5f5;
-}
-
 /* Media Queries */
 
 @media screen and (min-width: 540px) {
@@ -246,20 +197,6 @@ a {
 
   .platform {
     right: 3rem;
-  }
-}
-@media screen and (max-width: 767px) {
-  .navbar-nav {
-    display: none;
-  }
-
-  .navbar-toggler,
-  .nav_list {
-    display: block;
-  }
-
-  .collapse.navbar-collapse.show {
-    display: block;
   }
 }
 
@@ -320,40 +257,3 @@ a {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-/* .navbar {
-  display: none;
-} */
-/* .navbar:hover {
-  display: flex;
-  top: 2.5rem;
-}
-.navbar-nav {
-  display: inline;
-}
-.navbar-click:hover {
-  display: inline-block;
-} */
-/* .navbar {
-  position: relative;
-}
-
-.navbar-click {
-  display: none;
-  position: absolute;
-  background-color: black; 
-}
-
-.navbar-nav:hover,
-.navbar-click {
-  display: block;
-}
-
-/* Other styles for buttons, links, etc. */
-/* .navbar-nav {
-  list-style: none;
-  padding: 0;
-}
-
-.nav-item {
-  margin: 10px 0;
-} */

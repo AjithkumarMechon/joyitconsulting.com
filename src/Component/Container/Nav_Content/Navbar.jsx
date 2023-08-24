@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import ".././product.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+
+import ".././product.css";
+import "./Navbar.css";
 import {
   SearchFailure,
   SearchRequest,
@@ -11,7 +13,6 @@ import {
 export default function Navbar() {
   const [searchInput, setSearchInput] = useState("");
   const dispatch = useDispatch();
-  // const [showDropdown, setShowDropdown] = useState(false);
 
   const fetchSearch = async () => {
     dispatch(SearchRequest());
@@ -22,19 +23,21 @@ export default function Navbar() {
     }
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+    fetchSearch();
+  };
+
   useEffect(() => {
     if (searchInput) {
       fetchSearch();
     }
   }, [searchInput]);
+  const [isMenuActive, setIsMenuActive] = useState(false); // State to manage menu visibility
 
-  // const toggleDropdown = () => {
-  //   setShowDropdown(!showDropdown);
-  // };
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setSearchInput(e.target.value);
-    fetchSearch();
+  const handleMenuToggle = () => {
+    setIsMenuActive(!isMenuActive);
   };
 
   return (
@@ -43,64 +46,58 @@ export default function Navbar() {
         className="navbar navbar-expand-md navbar-light bg-light justify-content-between p-0"
         style={{ position: "sticky", top: 0, height: "4rem" }}
       >
+        <div
+          className={`menu ${isMenuActive ? "active" : ""}`}
+          onClick={handleMenuToggle}
+        >
+          <div className="menu-line"></div>
+          <div className="menu-line"></div>
+          <div className="menu-line"></div>
+        </div>
         <div className="navbar_item mx-4">
           <a className="navbar-brand" href="/">
-            <b className="btn Logo">
+            <strong className="btn Logo">
               M<span className="inner_logo">oBoo</span>M
-            </b>
+            </strong>
           </a>
         </div>
-        <div className="topnav navbar_item">
-          <div className="search-container">
-            <input
-              className="form-control form-control-lg search-bar"
-              type="text"
-              placeholder="What do You want today...."
-              name="search"
-              value={searchInput}
-              onChange={handleSearch}
-              onBlur={fetchSearch}
-            />
-          </div>
+
+        <div className="navbar_item mx-4">
+          <input
+            className="form-control form-control-lg search-bar "
+            type="text"
+            placeholder="What do You want today...."
+            name="search"
+            value={searchInput}
+            onChange={handleSearch}
+            onBlur={fetchSearch}
+          />
         </div>
-        <nav className="navbar navbar-expand-md navbar-light bg-light">
-          <div className="navbar">
-            <button>
-              <div className="navbar-click"></div>
-            </button>
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="" href="">
-                  Store
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="">Account</a>
-              </li>
-              <li className="nav-item">
-                <a href="">Wish List</a>
-              </li>
-              <li className="nav-item">
-                <a href="">
-                  Basket <ShoppingBasketIcon />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </nav>
-      {/* {showDropdown && (
-        <div className="dropdown_content" onMouseLeave={toggleDropdown}>
-          <ul className="nav_list">
-            <li>Store</li>
-            <li>Account</li>
-            <li>Wish List</li>
+
+        <div className="navbar_item ">
+          <ul
+            className="show-menu "
+            style={{ display: isMenuActive ? "flex" : "none" }}
+          >
             <li>
-              Basket <ShoppingBasketIcon />
+              <a href="/" className="">
+                Store
+              </a>
+            </li>
+            <li>
+              <a href="/">Account</a>
+            </li>
+            <li>
+              <a href="/">Wish List</a>
+            </li>
+            <li>
+              <a href="/">
+                Basket <ShoppingBasketIcon />
+              </a>
             </li>
           </ul>
         </div>
-      )} */}
+      </nav>
     </div>
   );
 }
